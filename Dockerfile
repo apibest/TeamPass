@@ -13,10 +13,11 @@ RUN php5enmod ldap
 
 RUN perl -p -i -e "s/max_execution_time = 30/max_execution_time = 120/g" /etc/php5/apache2/php.ini
 RUN perl -p -i -e "s#Directory /var/www#Directory /teampass#g" /etc/apache2/apache2.conf
+RUN perl -p -i -e "s#Listen 80#Listen 8080#g" /etc/apache2/ports.conf
 
 RUN mv /teampassinit/apache-default.conf /etc/apache2/sites-available/000-default.conf
 RUN mv /teampassinit/start.sh /start.sh && chmod a+x /start.sh
-EXPOSE 80
+EXPOSE 8080
 VOLUME /teampass
 
 CMD /start.sh
