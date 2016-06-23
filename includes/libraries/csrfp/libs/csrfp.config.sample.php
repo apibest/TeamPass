@@ -5,6 +5,8 @@
 
 return array(
    "CSRFP_TOKEN" => "",
+   "CSRFP_HOSTS" => array(
+   ),
    "logDirectory" => "../log",
    "failedAuthAction" => array(
       "GET" => 0,

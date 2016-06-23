@@ -176,7 +176,9 @@ if (!defined('__CSRF_PROTECTOR__')) {
             //#todo this method is valid for same origin request only, 
             //enable it for cross origin also sometime
             //for cross origin the functionality is different
-            if (!static::isURLallowed()) {
+            if (isset($_SERVER["HTTP_ORIGIN"]) && in_array($_SERVER["HTTP_ORIGIN"], self::$config['CSRFP_HOSTS'])){
+                self::refreshToken();
+            } else if (!static::isURLallowed()) {
                 
                 //currently for same origin only
                 if (!(isset($_GET[self::$config['CSRFP_TOKEN']]) 
